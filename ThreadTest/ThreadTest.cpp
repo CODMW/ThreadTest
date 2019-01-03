@@ -4,13 +4,13 @@
 #include <Windows.h>
 #include <thread>
 //#include 
-//ä¿®æ”¹1-v3.0-on git
+//ĞŞ¸Ä1-v3.0
 #define MAX_THREADS 10
 #define MAX_BUF_SIZE 255
 
-//å¤šçº¿ç¨‹
+//¶àÏß³Ì
 
-//å®šä¹‰ä¸€ä¸ªç»“æ„ä½“
+//¶¨ÒåÒ»¸ö½á¹¹Ìå
 typedef struct _MyData
 {
 	int id;
@@ -21,31 +21,31 @@ typedef struct _MyData
 void  Myprintf(int i)
 {
 	Sleep(100);
-	printf("çº¿ç¨‹ %d --ã€‹å‡†å¤‡å·¥ä½œ \n", i);
+	printf("Ïß³Ì %d --¡·×¼±¸¹¤×÷ \n", i);
 	Sleep(150);
-	printf("çº¿ç¨‹ %d --ã€‹å·¥ä½œä¸­...\n", i);
+	printf("Ïß³Ì %d --¡·¹¤×÷ÖĞ...\n", i);
 	Sleep(200);
-	printf("çº¿ç¨‹ %d --ã€‹å·¥ä½œå®Œç»“æŸ\n", i);
+	printf("Ïß³Ì %d --¡·¹¤×÷Íê½áÊø\n", i);
 }
 
 
-//çº¿ç¨‹æ‰§è¡Œå‡½æ•°
+//Ïß³ÌÖ´ĞĞº¯Êı
 DWORD WINAPI MyThreadPro(LPVOID lpParam)
 {
 	MyData* pa = (MyData*)lpParam;
-	printf("å¯åŠ¨çº¿ç¨‹:%d \n", pa->id);
+	printf("Æô¶¯Ïß³Ì:%d \n", pa->id);
 	Myprintf(pa->id);
 	return 0;
 
 
-	//è¿”å›è°ƒç”¨è¿›ç¨‹çš„é»˜è®¤å†…å­˜å †å¥æŸ„ã€‚
+	//·µ»Øµ÷ÓÃ½ø³ÌµÄÄ¬ÈÏÄÚ´æ¶Ñ¾ä±ú¡£
 }
 
 
 
 void main()
 {
-	//åˆ›å»ºçº¿ç¨‹1        //æ³¨ï¼šåœ¨MFCç¨‹åºä¸­ï¼Œåº”è¯¥è°ƒç”¨AfxBeginThreadå‡½æ•°ï¼Œåœ¨Visual C++ç¨‹åºä¸­åº”è°ƒç”¨_beginthreadexå‡½æ•°ï¼Œ  _endthreadæ¥é”€æ¯çº¿ç¨‹ã€‚
+	//´´½¨Ïß³Ì1        //×¢£ºÔÚMFC³ÌĞòÖĞ£¬Ó¦¸Ãµ÷ÓÃAfxBeginThreadº¯Êı£¬ÔÚVisual C++³ÌĞòÖĞÓ¦µ÷ÓÃ_beginthreadexº¯Êı£¬  _endthreadÀ´Ïú»ÙÏß³Ì¡£
 	/*HANDLE CreateThread(
 	LPSECURITY_ATTRIBUTES lpThreadAttributes, // SD
 	SIZE_T dwStackSize,                       // initial stack size
@@ -59,17 +59,17 @@ void main()
 	DWORD dwThreadId[MAX_THREADS];
 	HANDLE hThread[MAX_THREADS];
 	        
-	//forå¾ªç¯åˆ›å»ºå¤šä¸ªçº¿ç¨‹
+	//forÑ­»·´´½¨¶à¸öÏß³Ì
 	for (int i = 0; i < MAX_THREADS; i++)
 	{
-		//å‚æ•°æ•°æ®
-		pData = (pMyData)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof MyData);  //å³åœ¨è¿›ç¨‹é»˜è®¤å †å†…å­˜ä¸Šç”³è¯·äº†ä¸€ä¸ªä¸å¯ç§»åŠ¨çš„ç©ºé—´ï¼Œå¤§å°ä¸ºsizeof(Data)çš„å†…å­˜ç©ºé—´
+		//²ÎÊıÊı¾İ
+		pData = (pMyData)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof MyData);  //¼´ÔÚ½ø³ÌÄ¬ÈÏ¶ÑÄÚ´æÉÏÉêÇëÁËÒ»¸ö²»¿ÉÒÆ¶¯µÄ¿Õ¼ä£¬´óĞ¡Îªsizeof(Data)µÄÄÚ´æ¿Õ¼ä
 		if (pData == NULL)
 			ExitProcess(2);
 		pData->id = i;
 		pData->val2 = i + 100;
 
-		//åˆ›å»ºçº¿ç¨‹
+		//´´½¨Ïß³Ì
 		hThread[i] = CreateThread(NULL, 0, MyThreadPro, pData, 0, &dwThreadId[i]);
 		if (hThread[i] == NULL)
 		{
@@ -79,16 +79,16 @@ void main()
 		Sleep(120);
 	}
 
-	//ç­‰å¾…æ‰€æœ‰çº¿ç¨‹ç»“æŸ
+	//µÈ´ıËùÓĞÏß³Ì½áÊø
 	WaitForMultipleObjects(MAX_THREADS, hThread, true, INFINITE);
 
-	//é€šè¿‡CloseHandleå‡½æ•°æ¥å…³é—­è¯¥çº¿ç¨‹å¯¹è±¡
+	//Í¨¹ıCloseHandleº¯ÊıÀ´¹Ø±Õ¸ÃÏß³Ì¶ÔÏó
 	for (int i = 0; i < MAX_THREADS; i++)
 	{
 		CloseHandle(hThread[i]);
 	}
 
-	printf("hello....\n");  //çº¿ç¨‹ç»“æŸåæ‰§è¡Œ
+	printf("hello....\n");  //Ïß³Ì½áÊøºóÖ´ĞĞ
 	system("pause");
 	return;
 }
