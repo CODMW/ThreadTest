@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <thread>
 //#include 
-//ÐÞ¸Ä1
+//ÐÞ¸Ä1-v3.0
 #define MAX_THREADS 10
 #define MAX_BUF_SIZE 255
 
